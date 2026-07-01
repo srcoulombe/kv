@@ -38,4 +38,12 @@ defmodule KV.Command do
       _ -> {:error, :unknown_command}
     end
   end
+
+  @doc """
+  Runs the given command.
+  """
+  def run(command, socket) do
+    :gen_tcp.send(socket, "OK\r\n")
+    :ok
+  end
 end

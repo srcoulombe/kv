@@ -16,3 +16,5 @@ Distributed key-value store developed while reading the documentation for Mix.
    - https://github.com/srcoulombe/kv/tree/chapter-3
 4. [Chapter 4](https://elixir.hexdocs.pm/task-and-gen-tcp.html): Task and gen_tcp
    - https://github.com/srcoulombe/kv/tree/chapter-4
+5. [Chapter 5](https://elixir.hexdocs.pm/docs-tests-and-with.html): Doctests, patterns, and with
+   - https://github.com/srcoulombe/kv/tree/chapter-5

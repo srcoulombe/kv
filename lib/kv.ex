@@ -7,7 +7,7 @@ defmodule KV do
       {Registry, name: KV, keys: :unique},
       {DynamicSupervisor, name: KV.BucketSupervisor, strategy: :one_for_one},
       {Task.Supervisor, name: KV.ServerSupervisor},
-      Supervisor.child_spec({Task, fn -> KV.Server.accept(4040) end}, restart: :permanent)
+      Supervisor.child_spec({Task, fn -> KV.Server.accept(KV.Server.default_port) end}, restart: :permanent)
     ]
     Supervisor.start_link(
       children,

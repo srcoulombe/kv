@@ -1,7 +1,10 @@
 defmodule KV.Server do
   require Logger
 
-  def accept(port) do
+  @default_port 4040
+  def default_port(), do: @default_port
+
+  def accept(port \\ @default_port) do
     # The options below mean:
     #
     # 1. `:binary` - receives data as binaries (instead of lists)

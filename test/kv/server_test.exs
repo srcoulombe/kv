@@ -4,7 +4,7 @@ defmodule KV.ServerTest do
   @socket_options [:binary, packet: :line, active: false]
 
   setup config do
-    {:ok, socket} = :gen_tcp.connect(~c"localhost", 4040, @socket_options)
+    {:ok, socket} = :gen_tcp.connect(~c"localhost", KV.Server.default_port, @socket_options)
     test_name = config.test |> Atom.to_string() |> String.replace(" ", "-")
     %{socket: socket, name: "#{config.module}-#{test_name}"}
   end

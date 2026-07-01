@@ -10,31 +10,26 @@ defmodule KV.ServerTest do
   end
 
   test "server interaction", %{socket: socket, name: name} do
-    # CREATE
     assert send_and_recv(socket, "CREATE #{name}\r\n") == "OK\r\n"
 
-    # PUT
     assert send_and_recv(socket, "PUT #{name} eggs 3\r\n") == "OK\r\n"
 
-    # GET
     assert send_and_recv(socket, "GET #{name} eggs\r\n") == "3\r\n"
     assert send_and_recv(socket, "") == "OK\r\n"
 
-    # DELETE
     assert send_and_recv(socket, "DELETE #{name} eggs\r\n") == "OK\r\n"
 
-    # GET
     assert send_and_recv(socket, "GET #{name} eggs\r\n") == "\r\n"
     assert send_and_recv(socket, "") == "OK\r\n"
   end
 
   test "unknown command", %{socket: socket} do
-    assert send_and_recv(socket, "WHATEVER\r\n") ==
+    assert send_and_recv(socket, "NONSENSE\r\n") ==
              "UNKNOWN COMMAND\r\n"
   end
 
   test "unknown bucket", %{socket: socket} do
-    assert send_and_recv(socket, "GET whatever eggs\r\n") ==
+    assert send_and_recv(socket, "GET non-existent eggs\r\n") ==
              "BUCKET NOT FOUND\r\n"
   end
 

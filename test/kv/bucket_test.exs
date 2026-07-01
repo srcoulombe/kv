@@ -3,23 +3,23 @@ defmodule KV.BucketTest do
 
   describe "KV.Bucket" do
     test "stores key:value pairs" do
-      {:ok, bucket} = KV.Bucket.start_link([])
-      assert KV.Bucket.get(bucket, "milk") == nil
+      {:ok, bucket} = start_supervised(KV.Bucket)
+      assert is_nil(KV.Bucket.get(bucket, "milk"))
 
       KV.Bucket.put(bucket, "milk", 3)
       assert KV.Bucket.get(bucket, "milk") == 3
     end
 
-    test "stores key:value pairs on a named process" do
-      {:ok, _} = KV.Bucket.start_link(name: :shopping_list)
-      assert KV.Bucket.get(:shopping_list, "milk") == nil
+    test "stores key:value pairs on a named process", config do
+      {:ok, _} = start_supervised({KV.Bucket, name: config.test})
+      assert is_nil(KV.Bucket.get(config.test, "milk"))
 
-      KV.Bucket.put(:shopping_list, "milk", 3)
-      assert KV.Bucket.get(:shopping_list, "milk") == 3
+      KV.Bucket.put(config.test, "milk", 3)
+      assert KV.Bucket.get(config.test, "milk") == 3
     end
 
     test "deletes key:value pair" do
-      {:ok, bucket} = KV.Bucket.start_link([])
+      {:ok, bucket} = start_supervised(KV.Bucket)
       KV.Bucket.put(bucket, "milk", 3)
       assert KV.Bucket.get(bucket, "milk") == 3
 

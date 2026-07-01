@@ -12,5 +12,7 @@ Distributed key-value store developed while reading the documentation for Mix.
    - https://github.com/srcoulombe/kv/tree/chapter-1
 2. [Chapter 2](https://elixir.hexdocs.pm/supervisor-and-application.html): Registries and supervision trees
    - https://github.com/srcoulombe/kv/tree/chapter-2
-4. [Chapter 3](https://elixir.hexdocs.pm/dynamic-supervisor.html): Supervising dynamic children
+3. [Chapter 3](https://elixir.hexdocs.pm/dynamic-supervisor.html): Supervising dynamic children
    - https://github.com/srcoulombe/kv/tree/chapter-3
+4. [Chapter 4](https://elixir.hexdocs.pm/task-and-gen-tcp.html): Task and gen_tcp
+   - https://github.com/srcoulombe/kv/tree/chapter-4

@@ -49,6 +49,10 @@ defmodule KV.Server do
     exit(:shutdown)
   end
 
+  defp write_line(socket, {:error, :not_found}) do
+    :gen_tcp.send(socket, "BUCKET NOT FOUND\r\n")
+  end
+
   defp write_line(socket, {:error, error}) do
     # Unknown error; write to the client and exit
     :gen_tcp.send(socket, "ERROR\r\n")

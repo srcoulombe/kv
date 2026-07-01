@@ -1,21 +1,7 @@
 # KV
+## What's this?
+Distributed key-value store developed while reading the documentation for Mix.
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `kv` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:kv, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/kv>.
-
+## References
+1. [Mix documentation](https://elixir.hexdocs.pm/introduction-to-mix.html)
+2. [Reference implementation](https://github.com/josevalim/kv)

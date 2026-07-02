@@ -18,3 +18,5 @@ Distributed key-value store developed while reading the documentation for Mix.
    - https://github.com/srcoulombe/kv/tree/chapter-4
 5. [Chapter 5](https://elixir.hexdocs.pm/docs-tests-and-with.html): Doctests, patterns, and with
    - https://github.com/srcoulombe/kv/tree/chapter-5
+6. [Chapter 6](https://elixir.hexdocs.pm/config-and-distribution.html): Configuration and distribution
+   - https://github.com/srcoulombe/kv/tree/chapter-5

@@ -35,6 +35,7 @@ defmodule KV.Command do
       ["GET", bucket, key] -> {:ok, {:get, bucket, key}}
       ["PUT", bucket, key, value] -> {:ok, {:put, bucket, key, value}}
       ["DELETE", bucket, key] -> {:ok, {:delete, bucket, key}}
+      ["SUBSCRIBE", bucket] -> {:ok, {:subscribe, bucket}}
       _ -> {:error, :unknown_command}
     end
   end
@@ -74,11 +75,37 @@ defmodule KV.Command do
     end)
   end
 
+  def run({:subscribe, bucket}, socket) do
+    lookup(bucket, fn pid ->
+      KV.Bucket.subscribe(pid)
+      :inet.setopts(socket, active: true)
+      receive_messages(socket)
+    end)
+  end
+
   defp lookup(bucket, callback) do
     if bucket = KV.lookup_bucket(bucket) do
       callback.(bucket)
     else
       {:error, :not_found}
+    end
+  end
+
+  defp receive_messages(socket) do
+    receive do
+      {:put, key, value} ->
+        :gen_tcp.send(socket, "#{key} SET TO #{value}\r\n")
+        receive_messages(socket)
+
+      {:delete, key} ->
+        :gen_tcp.send(socket, "#{key} DELETED\r\n")
+        receive_messages(socket)
+
+      {:tcp_closed, ^socket} ->
+        {:error, :closed}
+
+      _ ->
+        receive_messages(socket)
     end
   end
 end

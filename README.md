@@ -22,3 +22,4 @@ Distributed key-value store developed while reading the documentation for Mix.
    - https://github.com/srcoulombe/kv/tree/chapter-6
 7. [Chapter 7](https://elixir.hexdocs.pm/genservers.html): Client-server with GenServer
    - https://github.com/srcoulombe/kv/tree/chapter-7
+8. [Chapter 8](https://elixir.hexdocs.pm/releases.html): Releases
